@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bitola Map with Custom Marker</title>
+  <style>
+    /* Set the size of the map container */
+    #map {
+      height: 900px; /* Adjust the height as needed */
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="map"></div>
+
+<script>
+  // Initialize the map
+  function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 41.0297, lng: 21.3292},
+    zoom: 15 // Adjust the initial zoom level as needed
+  });
+    // Define the path the marker will follow through Bitola
+    var pathCoordinates = [
+    { lat: 41.019710, lng: 21.341361 },
+    { lat: 41.020447, lng: 21.340847 },
+    { lat: 41.021106, lng: 21.340538 },
+    { lat: 41.022076, lng: 21.339999 },
+    { lat: 41.022871, lng: 21.339536 },
+    { lat: 41.023608, lng: 21.339279 },
+    { lat: 41.023549, lng: 21.338534 },
+    { lat: 41.023414, lng: 21.337429 },
+    { lat: 41.023317, lng: 21.336272 }, 
+    { lat: 41.023220, lng: 21.335501 },
+    { lat: 41.023026, lng: 21.334524 },
+    { lat: 41.022774, lng: 21.333573 },
+    { lat: 41.022793, lng: 21.332494 },
+    { lat: 41.022832, lng: 21.331517 },
+    { lat: 41.023026, lng: 21.330232 },
+    { lat: 41.023200, lng: 21.328973 },
+    { lat: 41.023375, lng: 21.327636 },
+    { lat: 41.023472, lng: 21.326377 },
+    { lat: 41.023705, lng: 21.325554 },
+    { lat: 41.023782, lng: 21.324886 },
+    { lat: 41.024073, lng: 21.323344 },
+    { lat: 41.024170, lng: 21.322496 },
+    { lat: 41.024364, lng: 21.321288 },
+    { lat: 41.024461, lng: 21.320440 },
+    { lat: 41.024616, lng: 21.319463 },
+    { lat: 41.024868, lng: 21.318281 }, 
+    { lat: 41.024965, lng: 21.317433 },
+    { lat: 41.025275, lng: 21.316173 },
+    { lat: 41.025585, lng: 21.315068 },
+    { lat: 41.025702, lng: 21.314169 },
+    { lat: 41.025915, lng: 21.313423 },
+    { lat: 41.026439, lng: 21.313243 },
+    { lat: 41.026943, lng: 21.313346 },
+    { lat: 41.027486, lng: 21.313732 },
+    { lat: 41.028164, lng: 21.313911 },
+    { lat: 41.028321, lng: 21.313969 },
+    { lat: 41.028922, lng: 21.314175 },
+    { lat: 41.029368, lng: 21.314406 },
+    { lat: 41.029988, lng: 21.314689 },
+    { lat: 41.030609, lng: 21.314946 },
+    { lat: 41.031074, lng: 21.315280 },
+    { lat: 41.031655, lng: 21.315486 }, 
+    { lat: 41.032101, lng: 21.315743 },
+    { lat: 41.032683, lng: 21.316000 },
+    { lat: 41.032935, lng: 21.316488 },
+    { lat: 41.032896, lng: 21.317157 },
+    { lat: 41.032838, lng: 21.317876 },
+    { lat: 41.032935, lng: 21.319470 },
+    { lat: 41.032722, lng: 21.320215 },
+    { lat: 41.032605, lng: 21.320806 },
+    { lat: 41.032392, lng: 21.321526 },
+    { lat: 41.032218, lng: 21.322194 },
+    { lat: 41.032412, lng: 21.322837 },
+    { lat: 41.032509, lng: 21.323582 },
+    { lat: 41.032373, lng: 21.324250 },
+    { lat: 41.032353, lng: 21.324867 },
+    { lat: 41.032276, lng: 21.325664 },
+    { lat: 41.032160, lng: 21.326358 },
+    { lat: 41.032121, lng: 21.326923 },
+    { lat: 41.032063, lng: 21.327848 },
+    { lat: 41.031927, lng: 21.328517 },
+    { lat: 41.031927, lng: 21.329519 },
+    { lat: 41.031849, lng: 21.330239 },
+    { lat: 41.031791, lng: 21.331164 },
+    { lat: 41.031849, lng: 21.331858 },
+    { lat: 41.031752, lng: 21.332552 },
+    { lat: 41.031675, lng: 21.333349 },
+    { lat: 41.031655, lng: 21.334222 },
+    { lat: 41.031326, lng: 21.334531 },
+    { lat: 41.031345, lng: 21.335250 },
+    { lat: 41.031403, lng: 21.336253 },
+    { lat: 41.031306, lng: 21.337050 },
+    { lat: 41.031365, lng: 21.338026 },
+    { lat: 41.031442, lng: 21.338617 },
+    { lat: 41.031481, lng: 21.339260 },
+    { lat: 41.031520, lng: 21.339928 },
+    { lat: 41.031423, lng: 21.340751 },
+    { lat: 41.031229, lng: 21.341239 },
+    { lat: 41.030841, lng: 21.341625 },
+    { lat: 41.030434, lng: 21.341753 },
+    { lat: 41.029969, lng: 21.341933 },
+    { lat: 41.029503, lng: 21.342061 },
+    { lat: 41.028980, lng: 21.342216 },
+    { lat: 41.028592, lng: 21.342293 },
+    { lat: 41.028127, lng: 21.342473 },
+    { lat: 41.027681, lng: 21.342498 },
+    { lat: 41.027312, lng: 21.342601 },
+    { lat: 41.026847, lng: 21.342730 },
+    { lat: 41.026459, lng: 21.342704 },
+    { lat: 41.026033, lng: 21.342550 },
+    { lat: 41.025961, lng: 21.342572 },
+    { lat: 41.025537, lng: 21.342637 },
+    { lat: 41.025146, lng: 21.342637 },
+    { lat: 41.024624, lng: 21.342832 },
+    { lat: 41.024135, lng: 21.342659 },
+    { lat: 41.023923, lng: 21.342291 },
+    { lat: 41.023678, lng: 21.341881 },
+    { lat: 41.023205, lng: 21.342011 },
+    { lat: 41.022749, lng: 21.342097 },
+    { lat: 41.022292, lng: 21.342291 },
+    { lat: 41.021770, lng: 21.342356 },
+    { lat: 41.021265, lng: 21.342313 },
+    { lat: 41.020759, lng: 21.342270 },
+    { lat: 41.020287, lng: 21.342400 },
+    { lat: 41.019928, lng: 21.342335 },
+    { lat: 41.019748, lng: 21.341989 }
+    ];
+    var busIcon = {
+      url: 'https://www.freeiconspng.com/thumbs/bus-icon/blue-bus-icon-2.png', // URL of the bus icon image
+      scaledSize: new google.maps.Size(40, 40) // Size of the bus icon
+    };
+
+    // Create a marker with initial position and custom icon
+    var marker = new google.maps.Marker({
+      position: pathCoordinates[0], // Starting position
+      map: map,
+      title: 'Bitola',
+      icon: busIcon // Use the custom icon
+    });
+
+    // Animate the marker's movement along the path
+    var index = 0;
+    var interval = 1500; // Update every 1 second (adjust as needed)
+    function moveMarker() {
+      marker.setPosition(pathCoordinates[index]);
+      index = (index + 1) % pathCoordinates.length; // Loop back to the beginning of the path
+
+      // Check if the marker is at the alert point
+      if (marker.getPosition().lat() === 41.023317 && marker.getPosition().lng() === 21.336272) {
+        // Trigger a notification
+        alert("AVTOBUSOT E NA POSTOJKA RAKOMETNO");
+      }
+      if (marker.getPosition().lat() === 41.024868 && marker.getPosition().lng() === 21.318281) {
+        // Trigger a notification
+        alert("AVTOBUSOT E NA POSTOJKA BOLNICA");
+      }
+      if (marker.getPosition().lat() === 41.031655 && marker.getPosition().lng() === 21.315486) {
+        // Trigger a notification
+        alert("AVTOBUSOT E NA POSTOJKA PEDAGOSKA");
+      }
+      
+
+      setTimeout(moveMarker, interval); // Move every interval milliseconds
+    }
+
+    // Start the marker movement
+    moveMarker();
+
+    var treeIcon = {
+      url: 'https://cdn-icons-png.flaticon.com/512/3448/3448339.png',
+      scaledSize: new google.maps.Size(40, 40)
+    };
+
+    // Add markers with custom icons
+    var treeMarker1 = new google.maps.Marker({
+      position: {lat: 41.023317, lng: 21.336272},
+      map: map,
+      title: 'Alert Point',
+      icon: treeIcon
+    });
+
+    var treeMarker2 = new google.maps.Marker({
+      position: {lat: 41.024868, lng: 21.318281},
+      map: map,
+      title: 'Alert Point',
+      icon: treeIcon
+    });
+
+    var treeMarker3 = new google.maps.Marker({
+      position: {lat: 41.031655, lng: 21.315486},
+      map: map,
+      title: 'Alert Point',
+      icon: treeIcon
+    });
+}
+
+</script>
+
+<!-- Load the Google Maps JavaScript API with your API key -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiJYKLn_5wbrVQEFVui8L6TrZImFdfj2s&callback=initMap" async defer></script>
+
+</body>
+</html>
